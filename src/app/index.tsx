@@ -8,6 +8,9 @@ export default function Index() {
 
             <Button title="Ir para Target" onPress={() => { router.push('/target') }} />
             <Button title="Transação" onPress={() => router.navigate("/transaction/1")}  />
+
+            <Button title="Progresso"onPress={() => router.navigate('/in-progress/12')}
+      />
         </View>
     )
 
