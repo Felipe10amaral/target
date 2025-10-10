@@ -22,5 +22,12 @@ export const styles = StyleSheet.create({
         fontSize: 32,
         color: colors.white,
         fontFamily: fontFamily.medium
+    },
+
+    summary: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        gap: 12
     }
 })
