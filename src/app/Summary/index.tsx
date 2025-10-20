@@ -3,7 +3,7 @@ import {MaterialIcons} from '@expo/vector-icons'
 import {View, Text, ColorValue} from 'react-native'
 import {styles} from './styles'
 
-export type SummaryProps = {
+type SummaryProps = {
     label: string
     value: string
 }
@@ -17,7 +17,7 @@ type Props = {
     isLeft?: boolean
 }
 
-export function Summary({ data, icon, isLeft = false }: Props) {
+export default function Summary({ data, icon, isLeft = false }: Props) {
   return (
     <View style={styles.container}>
      <View style={[styles.header, isLeft && {justifyContent: 'flex-end'}]}>
