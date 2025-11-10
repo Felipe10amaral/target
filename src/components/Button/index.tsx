@@ -23,7 +23,7 @@ export function Button ({title, isLoading, ...rest} :Props) {
         >
             {isLoading ? (
                 <ActivityIndicator color={colors.white} size="small"/>
-            ) : (
+            ) : ( 
                 <Text style={styles.title}>{title}</Text>
             )}
         </TouchableOpacity>
