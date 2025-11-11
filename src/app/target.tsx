@@ -1,6 +1,8 @@
-import {View, Text, Button} from 'react-native'
+import {View, Text} from 'react-native'
 import { router } from 'expo-router'
 import { PageHeader } from '@/components/PageHeader'
+import { Input } from '@/components/Input'
+import { Button } from '@/components/Button'
 
 export default function Target() {
     return (
@@ -14,7 +16,11 @@ export default function Target() {
                     onPress: () => {}
                 }}           
             />
-            <Button title="Voltar" onPress={() => router.back()} />
+            <View style={{ marginTop: 32, gap: 24 }}>
+                <Input label='Nome da meta' placeholder='Carro zero'/>
+                <Button title="Salvar" onPress={() => router.back()} />
+            </View>
+            
         </View>
     )
 }
