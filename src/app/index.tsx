@@ -1,11 +1,12 @@
 import { Alert, View } from "react-native";
 import { router, useFocusEffect } from "expo-router";
 import { HomeHeader } from "@/components/HomeHeader";
-import { Target } from "@/components/Target";
+import { Target, TargetProps } from "@/components/Target";
 import { List } from "@/components/List";
 import {Button} from '@/components/Button'
 import { useTargetDatabase } from "@/database/useTargetDatabase";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import Loading from "@/components/Loading";
 
 const summary = {
     total: "R$ 1000,00",
@@ -13,38 +14,27 @@ const summary = {
     output: { label: 'Saídas', value: '- R$ 1.400,00' }
 }
 
-const targets = [
-    {
-        id: '1',
-        name: 'Meta de Viagem',
-        percentage: '20%',
-        current: 'R$ 3.400,00',
-        target: 'R$ 17.000,00'
-    },
-    {
-        id: '2',
-        name: 'Apple Watch',
-        percentage: '20%',
-        current: 'R$ 400,00',
-        target: 'R$ 2.000,00'
-    },
-    {
-        id: '3',
-        name: 'Carro Novo',
-        percentage: '20%',
-        current: 'R$ 3.400,00',
-        target: 'R$ 30.000,00'
-    }
-]
+
 
 export default function Index() {
+    const [targets, setTargets] = useState<TargetProps[]>([])
+    const [isFetching, setIsFetching] = useState(true)
+
     const targetDataBase = useTargetDatabase();
     console.log(targetDataBase)
 
-    async function loadTargets() {
+    async function loadTargets(): Promise<TargetProps[]> {
         try {
             const response = await targetDataBase.listBySavedValue() 
-            console.log(response)
+            
+            return response.map((item) => ({
+                id: String(item.id),
+                name: item.name,
+                current: String(item.current),
+                percentage: item.percentage.toFixed(0) + '%',
+                target: String(item.amount)
+
+            }))
             
         } catch (error) {
             console.log(error)
@@ -52,11 +42,23 @@ export default function Index() {
         }
     }
 
+    async function fetchData() {
+        const targetsDataPromise = loadTargets()
+        const [targetData] = await Promise.all([targetsDataPromise])
+        setTargets(targetData)
+        setIsFetching(false)
+
+    }
+
     useFocusEffect(
         useCallback(() => {
-            loadTargets()
+            fetchData()
         },[])
     )
+
+    if(isFetching){
+        return <Loading />
+    }
     
     return (
         <View style={{flex:1}}>
