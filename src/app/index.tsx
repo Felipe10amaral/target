@@ -39,6 +39,7 @@ const targets = [
 
 export default function Index() {
     const targetDataBase = useTargetDatabase();
+    console.log(targetDataBase)
 
     async function loadTargets() {
         try {
