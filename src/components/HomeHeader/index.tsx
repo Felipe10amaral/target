@@ -4,7 +4,7 @@ import { styles } from './styles'
 import { colors } from '@/theme/colors'
 import { Text, View } from 'react-native'
 import Separator from '../Separator'
-import {Summary, SummaryProps} from '../Summary'
+import {Summary, SummaryProps} from '@/components/Summary'
 
 export type HomeHeaderProps = {
     total: string,

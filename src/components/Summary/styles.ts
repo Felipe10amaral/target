@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         gap: 5
     },
     label: {
-        fontSize: 12,
+        fontSize: 10,
         color: colors.blue[300],
         fontFamily: fontFamily.regular
     },
