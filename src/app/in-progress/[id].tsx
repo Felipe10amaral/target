@@ -31,7 +31,7 @@ const transactions: TransactionsProps[] = [
 ]
 
 export default function InProgress() {
-    const params = useLocalSearchParams()
+    const params = useLocalSearchParams<{ id: string }>()
     const targetDataBase = useTargetDatabase()
     const [isFetching, setIsFetching] = useState(true)
     const [details, setDetails] = useState({
