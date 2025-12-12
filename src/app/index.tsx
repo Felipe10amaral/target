@@ -21,7 +21,7 @@ export default function Index() {
     const [isFetching, setIsFetching] = useState(true)
 
     const targetDataBase = useTargetDatabase();
-    console.log(targetDataBase)
+    
 
     async function loadTargets(): Promise<TargetProps[]> {
         try {
@@ -37,7 +37,7 @@ export default function Index() {
             }))
             
         } catch (error) {
-            console.log(error)
+            
             Alert.alert("Erro","Não foi possível carregar as metas")
         }
     }
