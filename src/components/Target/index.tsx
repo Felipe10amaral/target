@@ -22,7 +22,7 @@ export function Target({data, ...rest}: Props){
             <View style={styles.content}>
                 <Text style={styles.name} numberOfLines={1}>{data.name}</Text>
 
-                <Text style={styles.status}>{data.percentage} • de {data.target} </Text>
+                <Text style={styles.status}>{data.percentage} • {data.current} de {data.target} </Text>
             </View>
 
             <MaterialIcons name="chevron-right" size={20} />
