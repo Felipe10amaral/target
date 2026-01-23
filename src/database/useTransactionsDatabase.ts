@@ -41,9 +41,14 @@ export function  useTransactionsDatabase() {
         `)
     }
 
+    async function remove(id: number) {
+        await database.runAsync("delete from transactions where id = ?", id)
+    }
+
     return {
         create,
-        listByTargetId
+        listByTargetId,
+        remove
     }
 }
 
