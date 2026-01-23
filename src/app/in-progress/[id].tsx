@@ -79,6 +79,23 @@ export default function InProgress() {
         }
     }
 
+    function handleTransactionRemove(id: string) {
+       Alert.alert("Confirmação", "Deseja realmente remover essa transação?", [
+            { text: "Não", style: "cancel"},
+            { text: "Sim", onPress: () => transactionRemove(id) }
+        ])
+    } 
+
+    async function transactionRemove(id: string) {
+        try {
+            await transactionsDatabase.remove(Number(id))
+            fecthData()
+            Alert.alert("Sucesso", "Transação removida com sucesso.")
+        } catch (error) {
+            Alert.alert("Erro", "Não foi possível remover a transação.")
+        }
+    }
+
     return (
         <View style={{ flex: 1, padding: 24, gap: 32 }}>
             <PageHeader 
@@ -94,7 +111,7 @@ export default function InProgress() {
             <List 
                 data={transactions}
                 title="Transações"
-                renderItem={({item}) => <Transactions data={item} onRemove={() => {}} />}
+                renderItem={({item}) => <Transactions data={item} onRemove={() => handleTransactionRemove(item.id)} />}
                 
                 emptyMessage="Nenhuma transação cadastrada"
             />
