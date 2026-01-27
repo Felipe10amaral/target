@@ -43,7 +43,7 @@ export function useTargetDatabase() {
             from targets
              left join transactions on targets.id = transactions.target_id
                 group by targets.id, targets.name, targets.amount
-                order by current desc
+                order by percentage desc
              `
         )
     }
